@@ -1,0 +1,11 @@
+{
+  "name": "eatrite",
+  "version": "0.2.0",
+  "description": "EatRite: balance your plate, not just your protein. wHACKiest 2026 prototype (Track 3, Know Thyself).",
+  "main": "server.js",
+  "scripts": { "start": "node server.js", "test": "node --test test/engine.test.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": { "express": "^4.19.2" },
+  "optionalDependencies": { "@aws-sdk/client-bedrock-runtime": "^3.600.0" },
+  "license": "MIT"
+}

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EatRite: balance your plate, not just your protein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#f6f4ee;--card:#fff;--ink:#1d2a24;--muted:#5b6a62;--head:#14352a;--gr:#1f7a52;--gl:#e4f1e9;--or:#f59e2b;--ru:#c2410c;--line:#d9e3dc;--track:#e7eee9;--bar:#14352a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);font-size:16px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101b16;--card:#182720;--ink:#e6eee9;--muted:#9fb1a7;--head:#e4f1e9;--gr:#3fa273;--gl:#21372d;--line:#2f4a3e;--track:#2a4034;--bar:#0b130f;--ru:#f08a5d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#101b16;--card:#182720;--ink:#e6eee9;--muted:#9fb1a7;--head:#e4f1e9;--gr:#3fa273;--gl:#21372d;--line:#2f4a3e;--track:#2a4034;--bar:#0b130f;--ru:#f08a5d;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.5 "DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif}body.large{font-size:125%}
+h1,h2,h3,h4,.num{font-family:Fraunces,Georgia,serif;color:var(--head);font-weight:700;letter-spacing:-.01em}
+.top{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:space-between;padding:12px 24px;background:var(--bar)}
+.brand{font:700 1.5rem Fraunces,Georgia,serif;color:#fff}.brand i{color:var(--or);font-style:normal}
+nav{display:flex;gap:4px;flex-wrap:wrap}nav button{background:transparent;border:0;color:#cfe3d8;padding:8px 14px;border-radius:99px;font-weight:500}
+nav button[aria-current=page]{background:#fff;color:#14352a}
+.tools{display:flex;gap:8px}.tools button{background:transparent;color:#cfe3d8;border-color:#4d7364;font-size:.85rem;padding:5px 12px}
+main{max-width:1100px;margin:auto;padding:24px}
+.hero{margin:4px 0 18px}.hero h1{font-size:clamp(1.7rem,4vw,2.5rem);margin:0 0 6px;line-height:1.15}.hero p{margin:0;color:var(--muted);max-width:60ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:16px}
+h2{font-size:1.25rem;margin:0 0 10px}h3{font-size:1.02rem;margin:16px 0 6px}small{font-weight:400;color:var(--muted)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}@media(max-width:820px){.two{grid-template-columns:1fr}main{padding:16px}}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin:8px 0}.chk{align-items:center}
+label{display:flex;flex-direction:column;font-size:.85rem;color:var(--muted);gap:3px}.chk label{flex-direction:row;align-items:center;gap:6px}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--card);padding:8px 10px;border:1px solid var(--line);border-radius:10px;width:100%}input[type=checkbox]{width:auto}
+.row input:not([type=checkbox]),.row select{min-width:130px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:10px}
+button{font:inherit;font-weight:500;padding:8px 15px;border-radius:10px;border:1px solid var(--gr);background:var(--gl);color:var(--head);cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+button.p{background:var(--gr);color:#fff;border-color:var(--gr)}button.g{background:transparent;border-color:var(--line);color:var(--ink)}button.o{background:var(--or);border-color:var(--or);color:#14352a;font-weight:700}
+.msg{color:var(--muted);font-size:.85rem;margin:6px 0}.err{color:var(--ru)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}.chip{font-size:.8rem;padding:3px 11px;border-radius:99px;background:var(--gl);color:var(--head);border:1px solid var(--line)}
+.meals{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}.meal{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column}
+.meal h4{margin:0;font-size:1.08rem}.top2{display:flex;justify-content:space-between;gap:10px}.badge{font:700 1.1rem Fraunces,serif;color:#fff;background:var(--gr);border-radius:12px;padding:2px 10px;height:fit-content}
+.sub{color:var(--muted);font-size:.82rem}.why{font-size:.9rem;margin:8px 0;flex:1}.why.w{color:var(--ru)}.ai{font-size:.88rem;font-style:italic;color:var(--gr);margin:0 0 8px}.acts{display:flex;flex-wrap:wrap;gap:8px}
+.bar{display:grid;grid-template-columns:74px 1fr 56px;align-items:center;gap:8px;font-size:.8rem;margin:3px 0}.track{background:var(--track);border-radius:6px;height:8px;overflow:hidden}.fill{height:100%;background:var(--gr)}.fill.low{background:var(--ru)}
+.score{display:flex;align-items:baseline;gap:8px}.score .num{font-size:3rem;color:var(--gr)}svg text{font:500 11px "DM Sans",sans-serif;fill:var(--muted)}
+ul{padding-left:18px;margin:4px 0}li{margin:5px 0}li button{padding:1px 9px;margin-left:8px;font-size:.78rem}
+.wk{display:flex;gap:10px;align-items:end;height:160px;margin:10px 0 6px}.wk div{flex:1;display:flex;flex-direction:column;justify-content:end;align-items:center;height:100%;font-size:.78rem;color:var(--muted)}.wk b{display:block;width:100%;max-width:46px;background:var(--gr);border-radius:8px 8px 3px 3px;min-height:3px}.wk em{font-style:normal;color:var(--head);font-weight:700}
+.plan{list-style:none;padding:0}.plan li{display:flex;justify-content:space-between}
+dialog{border:1px solid var(--line);border-radius:16px;max-width:520px;padding:22px;background:var(--card);color:var(--ink)}dialog::backdrop{background:#0008}
+@media(prefers-reduced-motion:no-preference){.fill{transition:width .4s}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">Eat<i>Rite</i></div>
+  <nav id="nav"><button data-tab="discover">Discover</button><button data-tab="today">Today</button><button data-tab="week">Week</button><button data-tab="rules">My rules</button></nav>
+  <div class="tools"><button id="btnLarge">Large text</button><button id="btnExport" hidden>Export</button></div>
+</header>
+<main>
+<section id="tab-discover" class="tab">
+  <div class="hero"><h1>Balance your plate, not just your protein.</h1><p>Meals picked for the nutrients you’re still missing today, within your doctor’s limits, your diet and your budget.</p></div>
+  <div id="chips" class="chips"></div><p id="hidden" class="msg"></p><div id="results" class="meals"></div>
+</section>
+<section id="tab-today" class="tab" hidden>
+  <div class="two">
+    <div class="card"><h2>The shape of your day</h2><div id="radar"></div><div class="score"><span class="num" id="score">0</span><small>/100 balanced-plate score</small></div><p class="msg">A full, even shape means a balanced day. A lopsided one means something is missing.</p></div>
+    <div class="card"><h2>Nutrients so far</h2><div id="bars"></div><p id="sugarLine" class="msg"></p><h3>Nudges</h3><ul id="nudges"></ul></div>
+  </div>
+  <div class="two">
+    <div class="card"><h2>Eaten today <small id="cnt"></small></h2><ul id="logList"></ul></div>
+    <div class="card"><h2>Plan my day</h2><p class="msg">Picks the remaining meals that best balance your day within your rules.</p><button id="btnPlan" class="p">Plan my meals</button><div id="planOut"></div></div>
+  </div>
+</section>
+<section id="tab-week" class="tab" hidden>
+  <div class="card"><h2>Your last 7 days</h2><div id="wk" class="wk"></div><p id="insight"></p><button id="btnSampleWeek" class="g">Load a sample week</button><p class="msg">Sample data replaces your last 6 days. Your own data stays in this browser.</p></div>
+</section>
+<section id="tab-rules" class="tab" hidden>
+  <div class="two">
+    <div class="card"><h2>About you</h2>
+      <div class="row"><label>Food preference<select id="diet"><option value="veg">Vegetarian</option><option value="egg">Vegetarian + egg</option><option value="nonveg">Non-vegetarian</option></select></label><label>Budget per meal (₹, 0 = any)<input id="budget" type="number" min="0" step="10"></label></div>
+      <div class="row chk"><span>Avoid:</span><label><input type="checkbox" class="avoid" value="dairy"> Dairy</label><label><input type="checkbox" class="avoid" value="egg"> Egg</label><label><input type="checkbox" class="avoid" value="fish"> Fish</label></div>
+      <h3>Daily targets <small>(starting points: verify with ICMR-NIN RDA or a dietitian)</small></h3>
+      <div class="row"><label>Sex<select id="sex"><option value="f">Female</option><option value="m">Male</option></select></label><label>Weight (kg)<input id="weight" type="number" min="20" placeholder="optional"></label><button id="btnCalc" class="g">Calculate from my profile</button></div>
+      <div id="targets" class="grid"></div></div>
+    <div class="card"><h2>Doctor’s diet chart <small>(optional)</small></h2>
+      <textarea id="chartText" rows="4" placeholder="Paste or speak the advice, e.g. “Diabetic. Low sugar diet, carbohydrates max 150 g per day. No dairy.”"></textarea>
+      <div class="row"><button id="btnChart" class="p">Read chart</button><button id="btnSpeak" class="g" hidden>Speak it</button><button id="btnSample" class="g">Try a sample</button></div>
+      <div id="photoRow" class="row" hidden><label>Or upload a photo of the chart<input id="chartFile" type="file" accept="image/png,image/jpeg"></label></div>
+      <p id="chartMsg" class="msg"></p>
+      <div class="row"><label>Sugar cap (g/day)<input id="sugarCap" type="number" min="0" placeholder="none"></label><label>Carb cap (g/day)<input id="carbCap" type="number" min="0" placeholder="none"></label></div>
+      <p class="msg">These limits are strict rules: meals that break them are hidden. EatRite is not medical advice. Always follow your doctor.</p></div>
+  </div>
+  <div class="row"><button id="btnSave" class="p">Save and see meals</button><button id="btnDelete" class="g">Delete my data</button></div>
+  <p class="msg">Your data stays in this browser. <span id="mode"></span></p>
+</section>
+</main>
+<dialog id="dlg"><h3 id="dlgTitle"></h3><div id="dlgBody"></div><div class="row"><button id="dlgListen">Listen</button><button id="dlgClose" class="g">Close</button></div></dialog>
+<script>
+// Illustrative sample data: id, name, kitchen, price, diet, allergens, kcal, protein, carbs, fibre, fat, sugar, iron, calcium, vitC, recipe
+const R=[
+['ragi-dosa','Ragi dosa + sambar','Amma Mess',70,'veg','',320,9,52,7,8,3,3.5,180,12,'Mix ragi flour with a little rice flour, water and salt into a thin batter; rest 15 min.|Spread thin on a hot tawa, drizzle oil, cook both sides until crisp.|Simmer toor dal with vegetables and sambar powder.|Serve hot with sambar.'],
+['moong-khichdi','Moong dal khichdi + curd','Home Kitchen Meena',90,'veg','dairy',380,16,58,8,9,4,3.2,150,6,'Rinse moong dal and rice (1:1); pressure-cook with turmeric and salt for 3 whistles.|Temper ghee, cumin, ginger and curry leaves; stir in.|Serve with fresh curd.'],
+['chicken-roti','Chicken curry + 2 rotis','Spice Route Kitchen',160,'nonveg','',520,36,42,6,22,4,3.0,90,10,'Saute onion, ginger-garlic and tomato with spices.|Add chicken and cook covered for 20 min.|Serve with whole-wheat rotis.'],
+['paneer-bhurji','Paneer bhurji + multigrain roti','Spice Route Kitchen',130,'veg','dairy',450,24,36,6,24,5,2.8,320,14,'Saute onion, tomato, capsicum and spices.|Crumble paneer in and cook 4 min.|Serve with multigrain roti.'],
+['rajma-rice','Rajma + brown rice','Amma Mess',100,'veg','',480,18,78,14,8,4,4.5,110,8,'Soak rajma overnight; pressure-cook until soft.|Simmer in onion-tomato masala for 15 min.|Serve over brown rice.'],
+['egg-curry','Egg curry + 2 rotis','Home Kitchen Meena',110,'egg','egg',430,24,38,5,20,3,3.4,100,4,'Hard-boil eggs; peel and lightly fry.|Make an onion-tomato gravy with spices.|Add eggs, simmer 5 min, serve with rotis.'],
+['sprouts-chaat','Sprouts chaat bowl','Green Bowl',60,'veg','',230,14,34,11,4,5,4.0,90,30,'Steam mixed sprouts 5 min.|Toss with onion, tomato, cucumber and lemon.|Add chaat masala and coriander.'],
+['fish-rice','Fish curry + rice','Coastal Kitchen',170,'nonveg','fish',500,30,62,3,14,3,2.5,120,6,'Simmer a tamarind, chilli and coconut base.|Add fish pieces; cook 8 min.|Serve with steamed rice.'],
+['oats-upma','Vegetable oats upma','Green Bowl',55,'veg','',290,9,46,7,7,3,2.6,60,14,'Dry-roast oats; temper mustard, curry leaves and vegetables.|Add water, cook 4 min.|Finish with lemon.'],
+['palak-chole','Palak chole + roti','Amma Mess',95,'veg','',460,17,66,12,12,5,6.0,190,28,'Pressure-cook soaked chickpeas.|Blend blanched spinach; cook with onion-tomato masala.|Add chickpeas, simmer 10 min; serve with roti.'],
+['curd-rice','Curd rice + pickled veg','Home Kitchen Meena',60,'veg','dairy',350,9,60,2,8,5,0.8,200,4,'Mash cooked rice with curd and salt.|Temper mustard, curry leaves and green chilli.|Serve with pickled vegetables.'],
+['tofu-quinoa','Tofu stir-fry + quinoa','Green Bowl',180,'veg','',410,22,42,8,16,4,3.8,350,40,'Cook quinoa 1:2 with water for 15 min.|Sear tofu cubes, add broccoli, capsicum, garlic and soy sauce.|Serve over quinoa.'],
+['idli-sambar','3 idlis + sambar + chutney','Amma Mess',50,'veg','',300,10,56,5,4,3,2.0,70,8,'Steam fermented idli batter 12 min.|Prepare sambar with dal and vegetables.|Serve with coconut chutney.'],
+['masoor-veg','Masoor dal + steamed veg + 1 roti','Home Kitchen Meena',85,'veg','',340,18,44,11,7,3,4.2,90,25,'Boil masoor dal with turmeric; temper with garlic and cumin.|Steam beans, carrot and broccoli 6 min.|Serve with one roti.'],
+['chicken-salad','Grilled chicken salad bowl','Green Bowl',170,'nonveg','',360,34,14,6,18,5,2.4,80,35,'Marinate chicken in a spice mix; grill 10 min.|Toss greens, cucumber, tomato and olive oil.|Top with sliced chicken.'],
+['besan-chilla','Besan chilla + mint chutney','Amma Mess',55,'veg','',280,14,30,6,11,2,3.0,70,6,'Whisk besan with water, onion, tomato, chilli and spices.|Cook thin pancakes on a tawa.|Serve with mint chutney.']];
+const M=R.map(r=>({id:r[0],name:r[1],seller:r[2],price:r[3],diet:r[4],allergens:r[5]?r[5].split(','):[],kcal:r[6],protein:r[7],carbs:r[8],fibre:r[9],fat:r[10],sugar:r[11],iron:r[12],calcium:r[13],vitC:r[14],recipe:r[15].split('|')}));
+const byId=id=>M.find(m=>m.id===id);
+
+// ---- Engine (mirrors src/engine.js) ----
+const SN=['protein','fibre','iron','calcium','vitC'];
+const LABEL={protein:'Protein',fibre:'Fibre',iron:'Iron',calcium:'Calcium',vitC:'Vitamin C',carbs:'Carbs',fat:'Fat',sugar:'Sugar'};
+const NUT=[['protein','Protein','g'],['fibre','Fibre','g'],['iron','Iron','mg'],['calcium','Calcium','mg'],['vitC','Vitamin C','mg'],['carbs','Carbs','g'],['fat','Fat','g']];
+const DEF={protein:55,carbs:260,fibre:30,fat:60,iron:19,calcium:1000,vitC:80};
+const RANK={veg:0,egg:1,nonveg:2},DL={veg:'Vegetarian',egg:'Vegetarian + egg',nonveg:'Non-vegetarian'};
+const sum=(l,k)=>l.reduce((a,m)=>a+(m[k]||0),0),pct=x=>Math.round(x*100);
+function excl(m,p,lim,log,left){
+  if(RANK[m.diet]>RANK[p.diet||'nonveg'])return'diet';
+  if((p.avoid||[]).some(a=>m.allergens.includes(a)))return'avoid';
+  if(p.budget&&m.price>p.budget)return'budget';
+  for(const[c,k]of[['sugarCap','sugar'],['carbCap','carbs']]){if(!lim[c])continue;const rem=Math.max(0,lim[c]-sum(log,k));if(m[k]>Math.min(rem,rem/left*1.25))return k;}
+  return null;}
+function recommend(p,lim,t,log){
+  const left=Math.max(1,3-log.length),ex={},out=[];
+  for(const m of M){const why=excl(m,p,lim,log,left);if(why){ex[why]=(ex[why]||0)+1;continue;}
+    const cov={};for(const n of SN){const need=Math.max(0,t[n]-sum(log,n))/left;cov[n]=need===0?1:Math.min(m[n]/need,1);}
+    const score=pct(SN.reduce((a,n)=>a+cov[n],0)/SN.length),s=SN.slice().sort((a,b)=>cov[b]-cov[a]),weak=s[4],trap=cov.protein>=.9&&cov[weak]<.5;
+    let reason=`Covers ${pct(cov[s[0]])}% of your ${LABEL[s[0]].toLowerCase()} and ${pct(cov[s[1]])}% of your ${LABEL[s[1]].toLowerCase()} need for this meal.`;
+    if(lim.sugarCap)reason+=` Sugar ${m.sugar} g fits your limit.`;if(lim.carbCap)reason+=` Carbs ${m.carbs} g fit your limit.`;
+    if(trap)reason+=` Heads-up: protein is covered but ${LABEL[weak].toLowerCase()} is low, so pair it with something else.`;
+    out.push({m,score,cov:Object.fromEntries(SN.map(n=>[n,pct(cov[n])])),reason,trap});}
+  out.sort((a,b)=>b.score-a.score||a.m.price-b.m.price);return{results:out.slice(0,6),ex};}
+function planDay(p,lim,t,base){const chosen=[...base],out=[];
+  while(chosen.length<3){const r=recommend(p,lim,t,chosen).results.find(x=>!chosen.includes(x.m));if(!r)break;chosen.push(r.m);out.push(r.m);}return out;}
+function day(p,lim,t,log){
+  const tot={},pc={};for(const n of[...SN,'carbs','fat','sugar'])tot[n]=Math.round(sum(log,n)*10)/10;
+  for(const n of[...SN,'carbs','fat'])pc[n]=pct(tot[n]/t[n]);
+  const score=log.length?pct(SN.reduce((a,n)=>a+Math.min(tot[n]/t[n],1),0)/SN.length):0,nudges=[];
+  if(!log.length)nudges.push('Add a meal to see your balance and get nudges.');
+  else{const left=Math.max(1,3-log.length);
+    for(const n of SN.slice().sort((a,b)=>pc[a]-pc[b]).slice(0,2)){if(pc[n]>=70)continue;
+      const pool=M.filter(m=>!excl(m,p,lim,log,left)).sort((a,b)=>b[n]-a[n]);
+      nudges.push(`${LABEL[n]} is at ${pc[n]}% of today’s target.${pool[0]?` Try ${pool[0].name} next.`:''}`);}
+    if(!nudges.length)nudges.push('Nicely balanced so far. Keep it up.');}
+  return{tot,pc,score,nudges};}
+function parseChart(text){
+  const t=String(text||'').toLowerCase(),limits={},profile={},notes=[];
+  const num=re=>{const m=t.match(re);return m?Number(m[1]):null;};
+  const sg=num(/sugars?[^\d\n,.;]{0,25}?(\d{1,3})\s*g/),cb=num(/carb(?:ohydrate)?s?[^\d\n,.;]{0,25}?(\d{2,3})\s*g/);
+  if(sg)limits.sugarCap=sg;else if(/low[- ]?sugar|sugar[- ]?free|diabet|prediabet/.test(t)){limits.sugarCap=25;notes.push('Low-sugar advice found: using a 25 g/day sugar cap. Edit it if your doctor gave a number.');}
+  if(cb)limits.carbCap=cb;else if(/low[- ]?carb/.test(t)){limits.carbCap=130;notes.push('Low-carb advice found: using a 130 g/day carb cap. Edit it if your doctor gave a number.');}
+  if(/vegetarian|no meat/.test(t))profile.diet='veg';else if(/eggetarian/.test(t))profile.diet='egg';
+  const av=[];if(/no dairy|lactose|dairy[- ]free|milk allerg/.test(t))av.push('dairy');if(/egg allerg|no eggs?/.test(t))av.push('egg');if(/fish allerg|shellfish|no fish/.test(t))av.push('fish');
+  if(av.length)profile.avoid=av;
+  if(/sodium|salt|bp|hypertens/.test(t))notes.push('Salt advice noticed. It isn’t modelled here, so follow your doctor’s guidance.');
+  if(!Object.keys(limits).length&&!av.length&&!profile.diet)notes.push('No limits recognised. Try “low sugar”, “sugar under 25 g” or “low carb”.');
+  return{limits,profile,notes};}
+
+// ---- State ----
+const $=s=>document.querySelector(s),KEY='eatrite-v2';
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fresh=()=>({profile:{diet:'nonveg',budget:0,avoid:[],sex:'f',weight:0},limits:{},targets:{...DEF},log:{},large:false});
+let S=fresh();try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.profile)S={...fresh(),...x};}catch(e){}
+const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+const dk=(off=0)=>{const d=new Date();d.setDate(d.getDate()-off);return d.toLocaleDateString('en-CA');};
+const ids=(k=dk())=>S.log[k]||[],mealsOf=k=>ids(k).map(byId).filter(Boolean),logged=()=>mealsOf(dk());
+let API=false,ST={},PLAN=[];
+
+// ---- Views ----
+const bar=(l,p,t)=>`<div class="bar"><span>${l}</span><div class="track"><div class="fill ${p<50?'low':''}" style="width:${Math.min(p,100)}%"></div></div><span>${t}</span></div>`;
+function radar(v){const cx=140,cy=128,Rr=80,pt=(i,f)=>{const a=-Math.PI/2+i*2*Math.PI/5;return[cx+Math.cos(a)*Rr*f,cy+Math.sin(a)*Rr*f];};
+  const ring=f=>SN.map((_,i)=>pt(i,f).map(x=>x.toFixed(1)).join(',')).join(' ');
+  const poly=SN.map((_,i)=>pt(i,Math.max(.03,Math.min(v[i],100)/100)).map(x=>x.toFixed(1)).join(',')).join(' ');
+  const lab=SN.map((n,i)=>{const[x,y]=pt(i,1.42);return`<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle">${LABEL[n]} ${v[i]}%</text>`;}).join('');
+  return`<svg viewBox="-24 0 328 252" role="img" aria-label="Nutrient balance radar" width="100%" style="max-width:340px;display:block;margin:auto">${[.33,.66,1].map(f=>`<polygon points="${ring(f)}" fill="none" stroke="var(--line)"/>`).join('')}<polygon points="${poly}" fill="var(--gr)" fill-opacity=".3" stroke="var(--gr)" stroke-width="2.5" stroke-linejoin="round"/>${lab}</svg>`;}
+function card(r){const m=r.m;
+  return`<article class="meal"><div class="top2"><div><h4>${esc(m.name)}</h4><div class="sub">${esc(m.seller)} · ₹${m.price} · ${m.kcal} kcal · ${DL[m.diet]}</div></div><span class="badge" title="Balanced-plate score">${r.score}</span></div>
+  <div style="margin-top:8px">${SN.map(k=>bar(LABEL[k],r.cov[k],r.cov[k]+'%')).join('')}</div>
+  <p class="why ${r.trap?'w':''}">${esc(r.reason)}</p><p class="ai" id="ai-${m.id}"></p>
+  <div class="acts"><button data-add="${m.id}" class="p">Add to today</button><button data-recipe="${m.id}">Recipe</button><button data-order="${m.id}" class="o">Order</button></div></article>`;}
+function discover(){
+  const lim=S.limits,chips=[DL[S.profile.diet],S.profile.budget?`Up to ₹${S.profile.budget}`:'Any budget',...S.profile.avoid.map(a=>'No '+a)];
+  if(lim.sugarCap)chips.push(`Sugar ≤ ${lim.sugarCap} g/day`);if(lim.carbCap)chips.push(`Carbs ≤ ${lim.carbCap} g/day`);
+  $('#chips').innerHTML=chips.map(c=>`<span class="chip">${esc(c)}</span>`).join('');
+  const out=recommend(S.profile,lim,S.targets,logged()),nm={diet:'food preference',avoid:'avoid list',budget:'budget',sugar:'sugar cap',carbs:'carb cap'};
+  const hid=Object.entries(out.ex).map(([k,n])=>`${n} hidden by ${nm[k]}`).join(', ');
+  $('#hidden').textContent=hid&&logged().length<3?`Hidden by your rules: ${hid}.`:'';
+  $('#results').innerHTML=logged().length>=3?'<p class="msg">Your day already has 3 meals. Open Today to review your balance, or remove a meal to see new suggestions.</p>':out.results.length?out.results.map(card).join(''):'<p class="msg err">No meals match all your rules. Relax the budget or a limit to see more.</p>';
+  if(API&&ST.bedrock)out.results.slice(0,3).forEach(r=>post('/api/explain',{id:r.m.id,reason:r.reason}).then(j=>{const e=$('#ai-'+r.m.id);if(e&&j.note)e.textContent=j.note;}).catch(()=>{}));}
+function todayView(){
+  const lg=logged(),d=day(S.profile,S.limits,S.targets,lg);
+  $('#radar').innerHTML=radar(SN.map(n=>Math.min(d.pc[n],100)));$('#score').textContent=d.score;
+  $('#bars').innerHTML=NUT.map(([k,l,u])=>bar(l,d.pc[k],`${d.tot[k]} ${u}`)).join('');
+  $('#sugarLine').textContent=`Sugar today: ${d.tot.sugar} g${S.limits.sugarCap?` of ${S.limits.sugarCap} g cap`:''}`;
+  $('#nudges').innerHTML=d.nudges.map(n=>`<li>${esc(n)}</li>`).join('');$('#cnt').textContent=`(${lg.length} of 3 meals)`;
+  $('#logList').innerHTML=lg.map((m,i)=>`<li>${esc(m.name)}<button data-del="${i}">Remove</button></li>`).join('')||'<li class="msg">Nothing yet. Add a meal from Discover.</li>';
+  if(PLAN.length){const pd=day(S.profile,S.limits,S.targets,[...lg,...PLAN]);
+    $('#planOut').innerHTML=`<ul class="plan">${PLAN.map(m=>`<li><span>${esc(m.name)}</span><span>₹${m.price}</span></li>`).join('')}</ul><p>Day score with this plan: <strong>${pd.score}</strong> · Extra cost ₹${sum(PLAN,'price')}</p><button data-addplan="1" class="o">Add plan to today</button>`;}
+  else $('#planOut').innerHTML='';}
+function weekView(){
+  const days=[];for(let i=6;i>=0;i--){const k=dk(i),lg=mealsOf(k);days.push({n:lg.length,d:day(S.profile,S.limits,S.targets,lg),l:new Date(k+'T12:00').toLocaleDateString('en',{weekday:'short'})});}
+  $('#wk').innerHTML=days.map(x=>`<div><em>${x.n?x.d.score:''}</em><b style="height:${x.n?Math.max(x.d.score,3):3}%"></b>${x.l}</div>`).join('');
+  const act=days.filter(x=>x.n);
+  if(!act.length){$('#insight').textContent='Log meals for a few days, or load a sample week, to see your pattern.';return;}
+  const avg=Object.fromEntries(SN.map(n=>[n,Math.round(act.reduce((a,x)=>a+Math.min(x.d.pc[n],100),0)/act.length)]));
+  const weak=SN.slice().sort((a,b)=>avg[a]-avg[b])[0],trap=act.filter(x=>x.d.pc.protein>=90&&['fibre','iron'].some(n=>x.d.pc[n]<50)).length;
+  const sc=Math.round(act.reduce((a,x)=>a+x.d.score,0)/act.length);
+  $('#insight').innerHTML=`Average balance <strong>${sc}/100</strong> over ${act.length} logged days. Your weakest nutrient is <strong>${LABEL[weak].toLowerCase()}</strong> (${avg[weak]}% of target on average).${trap?` On ${trap} day${trap>1?'s':''}, protein was on target while fibre or iron stayed under half.`:''}`;}
+function fields(){
+  $('#targets').innerHTML=NUT.map(([k,l,u])=>`<label>${l} (${u})<input id="t_${k}" type="number" min="0" value="${S.targets[k]}"></label>`).join('');
+  $('#diet').value=S.profile.diet;$('#budget').value=S.profile.budget||0;$('#sex').value=S.profile.sex||'f';$('#weight').value=S.profile.weight||'';
+  document.querySelectorAll('.avoid').forEach(c=>c.checked=S.profile.avoid.includes(c.value));
+  $('#sugarCap').value=S.limits.sugarCap??'';$('#carbCap').value=S.limits.carbCap??'';document.body.classList.toggle('large',!!S.large);}
+function collect(){const n=id=>$(id).value===''?undefined:Number($(id).value);
+  S.profile={diet:$('#diet').value,budget:Number($('#budget').value)||0,avoid:[...document.querySelectorAll('.avoid:checked')].map(c=>c.value),sex:$('#sex').value,weight:Number($('#weight').value)||0};
+  S.limits={sugarCap:n('#sugarCap'),carbCap:n('#carbCap')};S.targets=Object.fromEntries(NUT.map(([k])=>[k,Number($('#t_'+k).value)||0]));persist();}
+const renderAll=()=>{discover();todayView();weekView();};
+function go(tab){document.querySelectorAll('.tab').forEach(s=>s.hidden=s.id!=='tab-'+tab);document.querySelectorAll('#nav button').forEach(b=>{if(b.dataset.tab===tab)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});window.scrollTo(0,0);}
+
+// ---- Actions ----
+async function post(url,body){const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'Request failed');return j;}
+async function speak(t){if(API&&ST.elevenlabs){try{const r=await fetch('/api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:t})});if(r.ok)return new Audio(URL.createObjectURL(await r.blob())).play();}catch(e){}}
+  if('speechSynthesis' in window){speechSynthesis.cancel();speechSynthesis.speak(new SpeechSynthesisUtterance(t));}}
+function openDlg(title,html,listen){$('#dlgTitle').textContent=title;$('#dlgBody').innerHTML=html;const b=$('#dlgListen');b.hidden=!listen;b.onclick=()=>speak(listen);$('#dlg').showModal();}
+async function readChart(){
+  const msg=$('#chartMsg');msg.className='msg';let txt=$('#chartText').value.trim();
+  try{const f=$('#chartFile').files[0];
+    if(!txt&&f&&API){const b64=await new Promise(ok=>{const r=new FileReader();r.onload=()=>ok(r.result.split(',')[1]);r.readAsDataURL(f);});const j=await post('/api/chart',{imageBase64:b64,format:f.type.includes('png')?'png':'jpeg'});txt=j.text||'';$('#chartText').value=txt;}
+    if(!txt)throw new Error('Paste or speak your diet advice first, or try the sample.');
+    const j=parseChart(txt);
+    if(j.limits.sugarCap)$('#sugarCap').value=j.limits.sugarCap;if(j.limits.carbCap)$('#carbCap').value=j.limits.carbCap;
+    if(j.profile.diet)$('#diet').value=j.profile.diet;(j.profile.avoid||[]).forEach(a=>{document.querySelector(`.avoid[value="${a}"]`).checked=true;});
+    msg.textContent=['Limits applied. Please confirm them.',...j.notes].join(' ');collect();renderAll();
+  }catch(e){msg.className='msg err';msg.textContent=e.message;}}
+document.addEventListener('click',e=>{const d=e.target.dataset;if(!d)return;
+  if(d.tab)go(d.tab);
+  if(d.add){(S.log[dk()]=ids()).push(d.add);persist();PLAN=[];renderAll();go('today');}
+  if(d.del){ids().splice(Number(d.del),1);persist();PLAN=[];renderAll();}
+  if(d.addplan){(S.log[dk()]=ids()).push(...PLAN.map(m=>m.id));PLAN=[];persist();renderAll();}
+  if(d.recipe){const m=byId(d.recipe);openDlg(m.name,'<ol>'+m.recipe.map(s=>`<li>${esc(s)}</li>`).join('')+'</ol>',`${m.name}. `+m.recipe.map((s,i)=>`Step ${i+1}. ${s}`).join(' '));}
+  if(d.order){const m=byId(d.order);openDlg('Order sent (demo)',`<p>Message to ${esc(m.seller)}:</p><p><em>Hi ${esc(m.seller)}, I’d like to order: ${esc(m.name)} (₹${m.price}). Sent via EatRite.</em></p><p class="msg">Demo only: no real order is placed. The full app hands off to the kitchen’s WhatsApp or order flow.</p>`,null);}});
+$('#btnPlan').onclick=()=>{PLAN=planDay(S.profile,S.limits,S.targets,logged());if(!PLAN.length)$('#planOut').innerHTML='<p class="msg">Your day already has 3 meals, or no meals fit your rules.</p>';else todayView();};
+$('#btnChart').onclick=readChart;$('#btnSave').onclick=()=>{collect();PLAN=[];renderAll();go('discover');};$('#dlgClose').onclick=()=>$('#dlg').close();
+$('#btnSample').onclick=()=>{$('#chartText').value='Diabetic. Low sugar diet, carbohydrates max 150 g per day. No dairy.';readChart();};
+$('#btnCalc').onclick=()=>{const w=Number($('#weight').value),f=$('#sex').value==='f';if(w)$('#t_protein').value=Math.round(0.83*w);$('#t_iron').value=f?29:19;$('#t_vitC').value=f?65:80;$('#t_calcium').value=1000;$('#t_fibre').value=30;$('#chartMsg').textContent='Targets updated from your profile: starting points only. Verify with ICMR-NIN RDA or a dietitian.';};
+$('#btnLarge').onclick=()=>{S.large=!S.large;document.body.classList.toggle('large',S.large);persist();};
+$('#btnExport').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,2)],{type:'application/json'}));a.download='eatrite-my-data.json';a.click();};
+$('#btnDelete').onclick=()=>{if(confirm('Delete all EatRite data stored in this browser?')){try{localStorage.removeItem(KEY);}catch(e){}S=fresh();PLAN=[];fields();renderAll();}};
+$('#btnSampleWeek').onclick=()=>{const w=[['chicken-roti','egg-curry','chicken-salad'],['idli-sambar','curd-rice','fish-rice'],['oats-upma','paneer-bhurji','chicken-roti'],['ragi-dosa','rajma-rice','masoor-veg'],['besan-chilla','palak-chole','tofu-quinoa'],['sprouts-chaat','moong-khichdi','masoor-veg']];w.forEach((x,i)=>S.log[dk(6-i)]=x);persist();renderAll();};
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(SR){$('#btnSpeak').hidden=false;$('#btnSpeak').onclick=()=>{const r=new SR();r.lang='en-IN';r.onresult=e=>{$('#chartText').value=e.results[0][0].transcript;};r.onerror=()=>{$('#chartMsg').textContent='Could not hear anything. Try again or type the advice.';};r.start();};}
+
+// ---- Boot ----
+fields();renderAll();go('discover');
+fetch('/api/status').then(r=>r.ok?r.json():Promise.reject()).then(st=>{API=true;ST=st;$('#btnExport').hidden=false;$('#photoRow').hidden=!st.bedrock;
+  $('#mode').textContent=`Server mode: AI ${st.bedrock?'on (AWS Bedrock)':'off'}, voice ${st.elevenlabs?'ElevenLabs':'browser'}.`;if(st.bedrock)discover();}).catch(()=>{$('#mode').textContent='Standalone demo mode.';});
+</script>
+</body>
+</html>
